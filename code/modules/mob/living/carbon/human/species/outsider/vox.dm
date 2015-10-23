@@ -32,7 +32,7 @@
 	poison_type = "oxygen"
 	siemens_coefficient = 0.2
 
-	flags = NO_SCAN | NO_MINOR_CUT
+	flags = IS_RESTRICTED| IS_WHITELISTED | NO_SCAN | HAS_EYE_COLOR
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_EYE_COLOR
 
