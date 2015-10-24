@@ -12,6 +12,7 @@ var/list/gamemode_cache = list()
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
 	var/log_admin = 0					// log admin actions
+	var/log_devsay = 0					// log devsay messages
 	var/log_debug = 1					// log debug output
 	var/log_game = 0					// log game events
 	var/log_vote = 0					// log voting
@@ -207,6 +208,7 @@ var/list/gamemode_cache = list()
 	var/looc_allowed = 1
 	var/dooc_allowed = 1
 	var/dsay_allowed = 1
+	var/devsay_allowed = 1
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
 
@@ -324,6 +326,9 @@ var/list/gamemode_cache = list()
 
 				if ("log_adminchat")
 					config.log_adminchat = 1
+					
+				if ("log_devsay")
+					config.log_devsay = 1
 
 				if ("log_adminwarn")
 					config.log_adminwarn = 1
