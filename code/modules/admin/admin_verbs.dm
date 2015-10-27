@@ -99,7 +99,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/makePAI,
-	/datum/admins/proc/paralyze_mob
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/forceshuttles
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -303,8 +304,10 @@ var/list/admin_verbs_mod = list(
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
-	/datum/admins/proc/paralyze_mob
-	/client/proc/cmd_admin_rejuvenate
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/forceshuttles,
+	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
 )
 
 var/list/admin_verbs_mentor = list(
@@ -315,7 +318,8 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
 //	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message
+	/client/proc/cmd_admin_subtle_message,
+	/client/proc/sendFax //*allows us to send a fax to a specific fax machine.*/
 )
 
 /client/proc/add_admin_verbs()
