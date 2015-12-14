@@ -1,4 +1,5 @@
 //allows right clicking mobs to send an admin PM to their client, forwards the selected mob's client to cmd_admin_pm
+var/isReply = 0
 /client/proc/cmd_admin_pm_context(mob/M as mob in mob_list)
 	set category = null
 	set name = "Admin PM Mob"
@@ -95,8 +96,10 @@
 				var/reply = sanitize(input(C, msg,"[recieve_pm_type] PM from [sendername]", "") as text|null)		//show message and await a reply
 				if(C && reply)
 					if(sender)
+						isReply = 1
 						C.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
 					else
+						isReply = 0
 						adminhelp(reply)													//sender has left, adminhelp instead
 				return
 	src << "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "PM", src) + " to <span class='name'>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]</span>: <span class='message'>[msg]</span></span></span>"
@@ -105,7 +108,10 @@
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
 	if(C.prefs && C.prefs.toggles & SOUND_ADMINHELP)
-		C << 'sound/effects/adminhelp.ogg'
+		if(isReply == 1)
+			C << 'sound/effects/adminhelp_new.ogg'
+		else
+			C << 'sound/effects/adminhelp-reply.ogg'
 
 	log_admin("PM: [key_name(src)]->[key_name(C)]: [msg]")
 	send2adminirc("Reply: [key_name(src)]->[key_name(C)]: [html_decode(msg)]")
