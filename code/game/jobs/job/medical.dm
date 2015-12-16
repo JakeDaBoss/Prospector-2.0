@@ -130,7 +130,7 @@
 		return 1
 
 
-
+/*
 /datum/job/geneticist
 	title = "Geneticist"
 	flag = GENETICIST
@@ -159,6 +159,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		return 1
+*/
 
 /datum/job/psychiatrist
 	title = "Psychiatrist"
