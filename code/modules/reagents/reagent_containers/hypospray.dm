@@ -15,6 +15,14 @@
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 
+/obj/item/weapon/reagent_containers/hypospray/combat
+	name = "combat hypospray"
+	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	item_state = "combat_hypo"
+	icon_state = "combat_hypo"
+	amount_per_transfer_from_this = 12
+	volume = 72
+
 ///obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
 //	..()
 //	reagents.add_reagent("tricordrazine", 30)
