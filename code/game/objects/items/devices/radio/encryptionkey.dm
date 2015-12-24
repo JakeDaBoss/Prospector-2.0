@@ -35,6 +35,12 @@
 	icon_state = "eng_cypherkey"
 	channels = list("Engineering" = 1)
 
+/obj/item/device/encryptionkey/headset_engsec
+	name = "Engineering Security Radio Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "engsec_cypherkey"
+	channels = list("Engineering" = 1, "Security" = 1)
+
 /obj/item/device/encryptionkey/headset_rob
 	name = "robotics radio encryption key"
 	icon_state = "rob_cypherkey"
@@ -50,10 +56,22 @@
 	icon_state = "sci_cypherkey"
 	channels = list("Science" = 1)
 
+/obj/item/device/encryptionkey/headset_scisec
+	name = "Science Security Radio Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "scisec_cypherkey"
+	channels = list("Science" = 1, "Security" = 1)
+
 /obj/item/device/encryptionkey/headset_medsci
 	name = "medical research radio encryption key"
 	icon_state = "medsci_cypherkey"
 	channels = list("Medical" = 1, "Science" = 1)
+
+/obj/item/device/encryptionkey/headset_medsec
+	name = "Medical Security Radio Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "medsec_cypherkey"
+	channels = list("Medical" = 1, "Security" = 1)
 
 /obj/item/device/encryptionkey/headset_com
 	name = "command radio encryption key"

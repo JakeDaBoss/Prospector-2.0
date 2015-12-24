@@ -384,6 +384,24 @@
 	desc = "Medical Equipment"
 	region = ACCESS_REGION_MEDBAY
 
+/var/const/access_deptguard = 67
+/datum/access/access_deptguard
+	id = access_deptguard
+	desc = "Department Guard"
+	region = ACCESS_REGION_SECURITY
+
+/var/const/access_paramedic	= 68
+/datum/access/access_paramedic
+	id = access_paramedic
+	desc = "Paramedic"
+	region = ACCESS_REGION_MEDBAY
+
+/var/const/access_blueshield = 69
+/datum/access/access_blueshield
+	id = access_blueshield
+	desc = "Blueshield"
+	region = ACCESS_REGION_SECURITY
+
 /******************
 * Central Command *
 ******************/

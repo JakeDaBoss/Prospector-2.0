@@ -268,4 +268,9 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()
-    
+
+/obj/item/weapon/card/id/blueshield
+	name = "Blueshield Card"
+	desc = "A Blueshield Card that shows authority"
+	icon_state = "centcom"
+	item_state = "silver_id"

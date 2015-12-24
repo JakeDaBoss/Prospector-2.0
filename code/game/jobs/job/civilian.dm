@@ -193,6 +193,7 @@
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
 	minimal_access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
+	alt_titles = list("Interior Cleaner")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -264,4 +265,42 @@
 		H.implant_loyalty(H)
 
 
+		return 1
+
+/datum/job/secretary
+	title = "General Secretary"
+	flag = SECRETARY
+	department = "Civilian"
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "all of the heads of staff"
+	selection_color = "#dddddd"
+	idtype = /obj/item/weapon/card/id/silver
+	access = list(access_security, access_sec_doors,
+			            access_medical, access_eva, access_heads,
+			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_hydroponics, access_lawyer,
+			            access_chapel_office, access_library, access_research, access_mining, access_mining_station,
+			            access_RC_announce, access_gateway)
+	minimal_access = list(access_security, access_sec_doors,
+			            access_medical, access_eva, access_heads,
+			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_hydroponics, access_lawyer,
+			            access_chapel_office, access_library, access_research, access_mining, access_mining_station,
+			            access_RC_announce, access_gateway)
+	alt_titles = list("Personal Assistant")
+
+
+	equip(var/mob/living/carbon/human/H)
+		if(!H)	return 0
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_l_ear)
+		switch(H.backbag)
+			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/burgundy(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
 		return 1

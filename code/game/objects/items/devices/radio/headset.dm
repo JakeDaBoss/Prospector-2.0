@@ -89,6 +89,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_eng
 
+/obj/item/device/radio/headset/headset_engsec
+	name = "engineering security radio headset"
+	desc = "A headset that is a result of the mating between engineering and security. To access the engineering channel, use :e. For security, use :s."
+	icon_state = "engsec_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_engsec
+
 /obj/item/device/radio/headset/headset_rob
 	name = "robotics radio headset"
 	desc = "Made specifically for the roboticists who cannot decide between departments."
@@ -116,6 +123,27 @@
 	icon_state = "med_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_medsci
+
+/obj/item/device/radio/headset/headset_scisec
+	name = "research security radio headset"
+	desc = "A headset that is a result of the mating between science and security. To access the science channel, use :n. For security, use :s."
+	icon_state = "scisec_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_scisec
+
+/obj/item/device/radio/headset/headset_medsci
+	name = "medical research radio headset"
+	desc = "A headset that is a result of the mating between medical and science."
+	icon_state = "med_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/headset_medsci
+
+/obj/item/device/radio/headset/headset_medsec
+	name = "medical security radio headset"
+	desc = "A headset that is a result of the mating between medical and security. To access the medical channel, use :m. For security, use :s."
+	icon_state = "medsec_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_medsec
 
 /obj/item/device/radio/headset/headset_com
 	name = "command radio headset"
@@ -177,6 +205,13 @@
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
 	desc = "The headset of the guy who will one day be captain."
+	icon_state = "com_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/hop
+
+/obj/item/device/radio/headset/heads/blueshield
+	name = "blueshield guard's headset"
+	desc = "The headset of the guy who will one day be dead."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop

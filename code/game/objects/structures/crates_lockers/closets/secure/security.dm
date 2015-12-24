@@ -166,6 +166,32 @@
 		new /obj/item/clothing/accessory/badge/warden(src)
 		return
 
+/obj/structure/closet/secure_closet/armor
+	name = "Armor Locker"
+	req_access = list(access_brig)
+	icon_state = "sec1"
+	icon_closed = "sec"
+	icon_locked = "sec1"
+	icon_opened = "secopen"
+	icon_broken = "secbroken"
+	icon_off = "secoff"
+
+	New()
+		..()
+		sleep(2)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/suit/armor/vest/security(src)
+		new /obj/item/clothing/head/helmet(src)
+		return
 
 
 /obj/structure/closet/secure_closet/security
@@ -348,3 +374,55 @@
 				icon_state = icon_closed
 		else
 			icon_state = icon_opened
+
+/obj/structure/closet/secure_closet/deptguard
+	name = "Department Guards's Locker"
+	req_access = list(access_deptguard)
+	icon_state = "sec1"
+	icon_closed = "sec"
+	icon_locked = "sec1"
+	icon_opened = "secopen"
+	icon_broken = "secbroken"
+	icon_off = "secoff"
+
+	New()
+		..()
+		sleep(2)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/security(src)
+		else
+			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+
+		new /obj/item/weapon/storage/belt/security(src)
+		new /obj/item/device/flash(src)
+		new /obj/item/weapon/reagent_containers/spray/pepper(src)
+		new /obj/item/weapon/melee/baton/loaded(src)
+		new /obj/item/clothing/glasses/sunglasses/sechud(src)
+		new /obj/item/clothing/gloves/black(src)
+		return
+
+/obj/structure/closet/secure_closet/blueshield
+	name = "Blueshield Agent's Locker"
+	req_access = list(access_blueshield)
+	icon_state = "sec1"
+	icon_closed = "sec"
+	icon_locked = "sec1"
+	icon_opened = "secopen"
+	icon_broken = "secbroken"
+	icon_off = "secoff"
+
+	New()
+		..()
+		sleep(2)
+
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+//		new /obj/item/clothing/suit/armor/vest/fluff/deus_blueshield(src)
+		new /obj/item/device/radio/headset/heads/blueshield
+		new /obj/item/weapon/storage/belt/security(src)
+		new /obj/item/device/flash(src)
+		new /obj/item/weapon/reagent_containers/spray/pepper(src)
+		new /obj/item/weapon/grenade/flashbang(src)
+		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/clothing/glasses/sunglasses/sechud(src)
+		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/clothing/mask/balaclava/tactical(src)

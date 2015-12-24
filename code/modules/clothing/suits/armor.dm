@@ -32,6 +32,14 @@
 	item_state = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
+/obj/item/clothing/suit/armor/vest/fluff/deus_blueshield //deusdactyl
+	name = "blue shield security armor"
+	desc = "An armored vest with the badge of a hired Blueshield Security agent."
+	icon_state = "deus_blueshield"
+	item_state = "deus_blueshield"
+	body_parts_covered = UPPER_TORSO
+	armor = list(melee = 20, bullet = 25, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+
 
 /obj/item/clothing/suit/armor/riot
 	name = "Riot Suit"

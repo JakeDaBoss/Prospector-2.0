@@ -363,11 +363,15 @@ var/global/datum/controller/occupations/job_master
 						else
 							spawn_in_storage += thing
 			//Equip job items.
-			job.equip(H)
-			job.setup_account(H)
-			job.equip_backpack(H)
-			job.equip_survival(H)
-			job.apply_fingerprints(H)
+			if(istype(job,/datum/job/deptguard))
+				var/avaiabledept = getDGdept()
+				job.equip(H,avaiabledept)
+				H.mind.assigned_DG_dept = avaiabledept
+			else
+				job.equip(H)
+				job.equip_backpack(H)
+				job.equip_survival(H)
+				job.apply_fingerprints(H)
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
@@ -495,6 +499,9 @@ var/global/datum/controller/occupations/job_master
 		if(job)
 			if(job.title == "Cyborg")
 				return
+			else if(job.title == "Department Guard")
+				C = new job.idtype(H)
+				C.access = getdeptaccess(H.mind.assigned_DG_dept)
 			else
 				C = new job.idtype(H)
 				C.access = job.get_access()
@@ -521,6 +528,31 @@ var/global/datum/controller/occupations/job_master
 
 		return 1
 
+	proc/getDGdept()
+		var/datum/job/job = null
+		for(var/datum/job/J in occupations)
+			if(J.title == "Department Guard")
+				job = J
+				break
+		var/list/avaiabledepartments = list()
+		if(job:medical == 0)
+			avaiabledepartments += "Medical"
+		if(job:engine == 0)
+			avaiabledepartments += "Engineering"
+		if(job:research == 0)
+			avaiabledepartments += "Research"
+		if(avaiabledepartments.len == 0)
+			return "None"
+		var/A = pick(avaiabledepartments)
+		if(A)
+			switch(A)
+				if("Medical")
+					job:medical = 1
+				if("Engineering")
+					job:engine = 1
+				if("Research")
+					job:research = 1
+			return A
 
 	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 		if(!config.load_jobs_from_txt)
@@ -586,6 +618,17 @@ var/global/datum/controller/occupations/job_master
 
 			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 			feedback_add_details("job_preferences",tmp_str)
+
+	proc/getdeptaccess(var/dept)
+		var/list/deptaccess = list()
+		if(dept == "Medical")
+			deptaccess = list(access_deptguard, access_security, access_sec_doors, access_maint_tunnels, access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+		if(dept == "Engineering")
+			deptaccess = list(access_deptguard, access_security, access_sec_doors, access_maint_tunnels, access_engine, access_engine_equip, access_tech_storage, access_external_airlocks, access_construction, access_atmospherics)
+		if(dept == "Research")
+			deptaccess = list(access_deptguard, access_security, access_sec_doors, access_maint_tunnels, access_tox, access_morgue, access_tox_storage, access_teleporter, access_research, access_robotics, access_xenobiology,access_xenoarch)
+		return deptaccess
+
 
 /datum/controller/occupations/proc/LateSpawn(var/mob/living/carbon/human/H, var/rank)
 	//spawn at one of the latespawn locations

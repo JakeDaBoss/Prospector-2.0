@@ -668,6 +668,17 @@
 	vend_delay = 0
 */
 
+/obj/machinery/vending/deptguard
+	name = "GuardTech"
+	desc = "A Guard equipment vendor."
+	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	icon_state = "sec"
+	icon_deny = "sec-deny"
+	req_access = list(access_deptguard)
+	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/device/flash = 5,/obj/item/weapon/reagent_containers/spray/pepper = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
+	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/grenade/flashbang = 4)
+
 /obj/machinery/vending/boozeomat
 	name = "Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."

@@ -42,6 +42,30 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	siemens_coefficient = 0.9
 
+/obj/item/clothing/under/rank/deptguardENG
+	name = "Engineering Department Guard's jumpsuit"
+	desc = "It has Engineering insignia on it's shoulders."
+	icon_state = "deptguardENG"
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+/obj/item/clothing/under/rank/deptguardRND
+	name = "Research Department Guard's jumpsuit"
+	desc = "It has Research insignia on it's shoulders."
+	icon_state = "deptguardRND"
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+/obj/item/clothing/under/rank/deptguardMED
+	name = "Medical Department Guard's jumpsuit"
+	desc = "It has Medical insignia on it's shoulders."
+	icon_state = "deptguardMED"
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
 /obj/item/clothing/under/rank/security2
 	name = "security officer's uniform"
 	desc = "It's made of a slightly sturdier material, to allow for robust protection."
