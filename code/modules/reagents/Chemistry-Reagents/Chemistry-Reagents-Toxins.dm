@@ -264,8 +264,9 @@
 	description = "An effective hypnotic used to treat insomnia."
 	reagent_state = LIQUID
 	color = "#009CA8"
-	metabolism = REM * 0.5
+	metabolism = REM * 0.75
 	overdose = REAGENTS_OVERDOSE
+	data = 0
 
 /datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -273,15 +274,27 @@
 	if(dose < 1)
 		if(dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
-	else if(dose < 1.5)
-		M.eye_blurry = max(M.eye_blurry, 10)
-	else if(dose < 5)
-		if(prob(50))
-			M.Weaken(2)
-		M.drowsyness = max(M.drowsyness, 20)
-	else
-		M.sleeping = max(M.sleeping, 20)
-		M.drowsyness = max(M.drowsyness, 60)
+	if(M.eye_blurry < 44)
+		M.eye_blurry += 2
+	if(M.eye_blurry > 12)
+		if(M.drowsyness < 12)
+			M.drowsyness += 2
+		if(M.drowsyness > 10)
+			if(M.weakened < 14)
+				M.weakened += 1.5
+			if(M.weakened > 10)
+				M.sleeping = min(M.sleeping + 1.5, 20)
+	if(volume <= 0.2  && M.firstsleempmessage != 3500)
+		M.firstsleempmessage = 3500
+		M.secondsleepmessage = 2000
+		data = 0
+		M << "<span class='warning'>You start to feel lucid once again.</span>"
+	if(world.time > data + M.firstsleempmessage + M.secondsleepmessage)
+		M.firstsleempmessage = 5*60*10
+		M.secondsleepmessage = 10
+		data = world.time
+		M << "<span class='warning'>Staying awake grows difficult</span>"
+
 
 /datum/reagent/chloralhydrate
 	name = "Chloral Hydrate"
@@ -289,23 +302,36 @@
 	description = "A powerful sedative."
 	reagent_state = SOLID
 	color = "#000067"
-	metabolism = REM * 0.5
+	metabolism = REM * 0.75
 	overdose = REAGENTS_OVERDOSE * 0.5
+	data = 0
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	if(dose == metabolism)
+	if(M.eye_blurry < 44)
+		M.eye_blurry += 3
+	if(M.eye_blurry > 12)
 		M.confused += 2
-		M.drowsyness += 2
-	else if(dose < 2)
-		M.Weaken(30)
-		M.eye_blurry = max(M.eye_blurry, 10)
-	else
-		M.sleeping = max(M.sleeping, 30)
-
+		if(M.drowsyness < 24)
+			M.drowsyness += 2
+		if(M.drowsyness > 10)
+			if(M.weakened < 14)
+				M.weakened += 1.5
+			if(M.weakened > 10)
+				M.sleeping = min(M.sleeping + 1.5, 30)
 	if(dose > 1)
 		M.adjustToxLoss(removed)
+	if(volume <= 0.2  && M.firstsleempmessage != 3500)
+		M.firstsleempmessage = 3500
+		M.secondsleepmessage = 2000
+		data = 0
+		M << "<span class='warning'>You start to feel lucid once again.</span>"
+	if(world.time > data + M.firstsleempmessage + M.secondsleepmessage)
+		M.firstsleempmessage = 5*60*10
+		M.secondsleepmessage = 10
+		data = world.time
+		M << "<span class='warning'>Your torpor is building rapidly.</span>"
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"

@@ -275,6 +275,14 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 2
 
+/datum/chemical_reaction/peridaxonmoror
+	name = "Peridaxonmoror"
+	id = "peridaxonmoror"
+	result = "peridaxonmoror"
+	required_reagents = list("peridaxon" = 1, "tungsten" = 1, "silicon" = 2)
+	catalysts = list("sugar" = 5, "sulfur" = 5)
+	result_amount = 1
+
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
 	id = "virusfood"
@@ -303,6 +311,14 @@
 	result = "tricordrazine"
 	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/tricordrazinemoror
+	name = "Tricordrazinemoror"
+	id = "tricordrazinemoror"
+	result = "tricordrazinemoror"
+	required_reagents = list("tricordrazine" = 1, "tungsten" = 1, "silicon" = 2)
+	catalysts = list("sugar" = 5, "sulfur" = 5)
+	result_amount = 1
 
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"

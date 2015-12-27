@@ -7,7 +7,7 @@
 	reagent_state = LIQUID
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
-	metabolism = REM * 0.5
+	metabolism = REM * 0.25
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -81,7 +81,7 @@
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 6)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-15 * removed)
+		M.adjustOxyLoss((-15 * removed) - (M.oxyloss * 0.01))
 
 	holder.remove_reagent("lexorin", 2 * removed)
 
@@ -98,7 +98,7 @@
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 9)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
+		M.adjustOxyLoss((-300 * removed) - (M.oxyloss * 0.01))
 
 	holder.remove_reagent("lexorin", 3 * removed)
 
@@ -112,9 +112,33 @@
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-6 * removed)
+		M.adjustOxyLoss((-6 * removed) - (M.oxyloss * 0.01))
 		M.heal_organ_damage(3 * removed, 3 * removed)
 		M.adjustToxLoss(-3 * removed)
+
+/datum/reagent/tricordrazinemoror
+	name = "Tricordrazinemoror"
+	id = "tricordrazinemoror"
+	description = "Tricordrazinemoror is a mixture of tricordrazine with tungsten disilica acting as a chemical inhibitor."
+	reagent_state = LIQUID
+	color = "#694aa7"
+	metabolism = REM * 0.0125
+	scannable = 0
+
+/datum/reagent/tricordrazinemoror/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		if(volume >= 5)
+			M.adjustToxLoss(-3 * removed * 24)
+			M.adjustOxyLoss((-6 * removed * 4) - (M.oxyloss * 0.01))
+			M.heal_organ_damage(3 * removed * 24, 3 * removed * 24)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				H.vessel.remove_reagent("blood", 0.5)
+		else
+			M.adjustToxLoss(-3 * removed * 24)
+			M.adjustOxyLoss((-6 * removed * 4) - (M.oxyloss * 0.01))
+			M.heal_organ_damage(3 * removed * 24, 3 * removed * 24)
+			M.add_chemical_effect(CE_STABLE)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -158,7 +182,7 @@
 	color = "#C8A5DC"
 	overdose = 60
 	scannable = 1
-	metabolism = 0.02
+	metabolism = REM * 0.05
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 50)
@@ -216,11 +240,16 @@
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+	if(M.eye_blurry > 2)
+		M.eye_blurry = max(M.eye_blurry - 6, 2)
+	M.sleeping = max(M.sleeping - 5, 0)
 	M.drowsyness = max(M.drowsyness - 5, 0)
-	M.AdjustParalysis(-1)
-	M.AdjustStunned(-1)
-	M.AdjustWeakened(-1)
-	holder.remove_reagent("mindbreaker", 5)
+	M.AdjustParalysis(-3)
+	M.AdjustStunned(-3)
+	M.AdjustWeakened(-3)
+	holder.remove_reagent("mindbreaker", 3)
+	holder.remove_reagent("stoxin", 0.2)
+	holder.remove_reagent("chloralhydrate", 0.7)
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
@@ -266,7 +295,7 @@
 	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
 	reagent_state = LIQUID
 	color = "#561EC3"
-	overdose = 10
+	overdose = REAGENTS_OVERDOSE / 3
 	scannable = 1
 
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -276,6 +305,27 @@
 		for(var/obj/item/organ/I in H.internal_organs)
 			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
+
+/datum/reagent/peridaxonmoror
+	name = "Peridaxonmoror"
+	id = "peridaxonmoror"
+	description = "Peridaxon with tungsten disilica acting as a chemical inhibitor."
+	reagent_state = LIQUID
+	color = "#5f4296"
+	overdose = REAGENTS_OVERDOSE
+	scannable = 0
+	metabolism = REM * 0.0125
+
+/datum/reagent/peridaxonmoror/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+
+		for(var/obj/item/organ/I in H.internal_organs)
+			if((I.damage >= 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+				if(volume >= 5)
+					I.damage = min(I.damage + (removed * 5), 30)
+				else
+					I.damage = max(I.damage + (removed * 40), 0)
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"

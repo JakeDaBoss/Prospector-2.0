@@ -246,3 +246,11 @@
 	New()
 		..()
 		reagents.add_reagent("spaceacillin", 15)
+
+/obj/item/weapon/reagent_containers/pill/paracetamol
+	name = "Paracetamol pill"
+	desc = "Used to treat minor pain."
+	icon_state = "pill18"
+	New()
+		..()
+		reagents.add_reagent("paracetamol", 30)
