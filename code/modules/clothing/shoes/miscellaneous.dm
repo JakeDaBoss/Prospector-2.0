@@ -123,3 +123,12 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
+
+/obj/item/clothing/shoes/clothboots
+	name = "cloth wraps"
+	desc = "Clothen wraps easily wrapped around any species' foot, for digitigrade paws."
+	icon_state = "digit-cloth"
+	item_state = "digit-cloth"
+	species_restricted = null
+	body_parts_covered = 0
+	w_class = 2
