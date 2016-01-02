@@ -1194,6 +1194,47 @@
 	else if(href_list["adminchecklaws"])
 		output_ai_laws()
 
+	else if(href_list["takeadminhelp"])
+		var/mob/M = locate(href_list["takeadminhelp"])
+		var/take_msg = "\blue <b><font color=red><a href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name(M)]</a> is now being handled by <a href='?src=\ref[usr];priv_msg=\ref[src.owner]'>[key_name(src.owner)]</a></font></b>"
+		var/recieve_msg = "\blue <b>Your issue is being dealt with by <a href='?src=\ref[usr];priv_msg=\ref[src.owner]'>[usr.client.holder.fakekey ? "Administrator" : usr.key].</a></font> Click their name to send them more information about your issue.</b>"
+		M << recieve_msg
+		for(var/client/X in admins)
+			X << take_msg
+
+	else if(href_list["busy"])
+		var/mob/M = locate(href_list["busy"])
+		var/take_msg = "\blue <b><font color=green><a href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name(M)]</a> has been told we are too busy or too uncaring to answer by <a href='?src=\ref[usr];priv_msg=\ref[src.owner]'>[key_name(src.owner)]</a></font></b>"
+		var/recieve_msg = "\red <b>Your question / concern has been noticed by staff, but we have opted not to reply at this time. So either your adminhelp is being handled, or you made a silly request.</b>"
+		M << recieve_msg
+		for(var/client/X in admins)
+			X << take_msg
+
+	else if(href_list["takefax"])
+		var/mob/Sender = locate(href_list["takefax"])
+		var/take_msg = "\blue <b><font color=red><a href='?src=\ref[usr];priv_msg=\ref[Sender]'>[key_name(Sender)]</a> 's fax is being replied to by <a href='?src=\ref[usr];priv_msg=\ref[src.owner]'>[key_name(src.owner)]</a></font></b>"
+		if(!ismob(Sender))
+			usr << "This can only be used on instances of type /mob"
+			return
+		for(var/client/X in admins)
+			if(check_rights(R_ADMIN|R_MOD|R_MENTOR,0))
+				X << take_msg
+
+	else if(href_list["deleteweldertank"])
+		var/mob/M = locate(href_list["deleteweldertank"])
+		for(var/obj/structure/reagent_dispensers/fueltank/F in range(3, M.loc))
+			log_admin("fueltank deleted by [key_name(src.owner)] at [F.x],[F.y],[F.z]")
+			message_admins("fueltank deleted by [key_name(src.owner)] at [F.x],[F.y],[F.z]<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[F.x];Y=[F.y];Z=[F.z]'>JMP</a>")
+			del(F)
+
+	else if(href_list["deletesm"])
+		for(var/obj/machinery/power/supermatter/SM in world)
+			if(SM.damage > SM.emergency_point)
+				log_admin("The supermatter was deleted by [key_name(src.owner)] at [SM.x],[SM.y],[SM.z]")
+				message_admins("The supermatter was deleted by [key_name(src.owner)] at [SM.x],[SM.y],[SM.z] <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[SM.x];Y=[SM.y];Z=[SM.z]'>JMP</a>")
+				del(SM)
+
+
 	else if(href_list["adminmoreinfo"])
 		var/mob/M = locate(href_list["adminmoreinfo"])
 		if(!ismob(M))

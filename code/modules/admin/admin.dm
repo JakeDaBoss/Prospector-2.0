@@ -710,7 +710,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled DEV chat.")
 	message_admins("[key_name_admin(usr)] toggled DEV chat.", 1)
 	feedback_add_details("admin_verb","DEVZSAY")
-	
+
 /datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
@@ -1239,15 +1239,16 @@ proc/admin_notice(var/message, var/rights)
 			return "<b>[key_name(C, link, name, highlight_special)]</b>"
 
 		if(1)	//Private Messages
+			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;takeadminhelp=\ref[M]'>TAKE</A>) (<A HREF='?_src_=holder;busy=\ref[M]'>BUSY</A>)</b>"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)</b>"
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
+			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;takeadminhelp=\ref[M]'>TAKE</A>) (<A HREF='?_src_=holder;busy=\ref[M]'>BUSY</A>)</b>"
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, src)])</b>"
+			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;takeadminhelp=\ref[M]'>TAKE</A>) (<A HREF='?_src_=holder;busy=\ref[M]'>BUSY</A>)</b>"
 
 		if(4)	//Mentors
 			var/ref_mob = "\ref[M]"

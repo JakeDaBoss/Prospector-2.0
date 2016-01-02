@@ -18,12 +18,12 @@ em						{font-style: normal;font-weight: bold;}
 .ooc					{font-weight: bold;}
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
-.ooc .everyone			{color: #002eb8;}
-.ooc .looc				{color: #3A9696;}
+.ooc .everyone			{color: #4863A0;}
+.ooc .looc				{color: #6960EC;}
 .ooc .elevated			{color: #2e78d9;}
-.ooc .moderator			{color: #184880;}
-.ooc .developer			{color: #1b521f;}
-.ooc .admin				{color: #b82e00;}
+.ooc .moderator			{color: #488AC7;}
+.ooc .developer			{color: #307D7E;}
+.ooc .admin				{color: #5E5A80;}
 
 /* Admin: Private Messages */
 .pm  .howto				{color: #ff0000;	font-weight: bold;		font-size: 200%;}
@@ -32,11 +32,11 @@ em						{font-style: normal;font-weight: bold;}
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
-.mod_channel			{color: #735638;	font-weight: bold;}
-.mod_channel .admin		{color: #b82e00;	font-weight: bold;}
-.admin_channel			{color: #9611D4;	font-weight: bold;}
-.dev_channel			{color: #FF7F00;	font-weight: bold;}
-.dev_channel .admin		{color: #FF6100;	font-weight: bold;}
+.mod_channel			{color: #254117;	font-weight: bold;}
+.mod_channel .admin		{color: #0041C2;	font-weight: bold;}
+.admin_channel			{color: #6C2DC7;	font-weight: bold;}
+.dev_channel			{color: #C58917;	font-weight: bold;}
+.dev_channel .admin		{color: #786D5F;	font-weight: bold;}
 
 /* Radio: Misc */
 .deadsay				{color: #530FAD;}
