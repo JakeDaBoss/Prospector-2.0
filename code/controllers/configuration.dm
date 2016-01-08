@@ -140,7 +140,7 @@ var/list/gamemode_cache = list()
 	var/use_loyalty_implants = 0
 
 	var/welder_vision = 1
-	var/generate_asteroid = 0
+	var/generate_asteroid = 1
 	var/no_click_cooldown = 0
 
 	//Used for modifying movement speed for mobs.
@@ -326,7 +326,7 @@ var/list/gamemode_cache = list()
 
 				if ("log_adminchat")
 					config.log_adminchat = 1
-					
+
 				if ("log_devsay")
 					config.log_devsay = 1
 
