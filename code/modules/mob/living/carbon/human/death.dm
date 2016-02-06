@@ -1,9 +1,13 @@
 /mob/living/carbon/human/gib()
 
-	for(var/obj/item/organ/I in internal_organs)
-		I.removed()
-		if(istype(loc,/turf))
-			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+	for(var/obj/item/organ/IO in internal_organs)
+		qdel(IO)
+	for(var/obj/item/organ/EO in organs)
+		qdel(EO)
+
+//		I.removed()
+//		if(istype(loc,/turf))
+//			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
