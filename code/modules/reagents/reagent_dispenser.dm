@@ -239,3 +239,27 @@
 	New()
 		..()
 		reagents.add_reagent("sacid", 1000)
+
+/obj/structure/reagent_dispensers/spaceacillin
+	name = "Spaceacillin Dispenser"
+	desc = "A dispenser of spaceacillin."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "spaceacillintank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+	New()
+		..()
+		reagents.add_reagent("spaceacillin", 1000)
+
+/obj/structure/reagent_dispensers/radium
+	name = "Radium Dispenser"
+	desc = "A dispenser of radium."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "radiumtank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+	New()
+		..()
+		reagents.add_reagent("radium", 1000)
