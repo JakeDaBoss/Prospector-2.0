@@ -366,6 +366,20 @@ var/list/name_to_material
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
 
+/material/tungsten
+	name = "tungsten"
+	stack_type = /obj/item/stack/material/tungsten
+	icon_colour = "#6a768a"
+	icon_base = "solid"
+	icon_reinf = "reinf_over"
+	melting_point = 3700
+	stack_origin_tech = list(TECH_MATERIAL = 6)
+	cut_delay = 60
+	explosion_resistance = 30
+	integrity = 600
+	hardness = 90
+	weight = 25
+
 /material/glass
 	name = "glass"
 	stack_type = /obj/item/stack/material/glass
@@ -533,7 +547,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/mhydrogen
-	name = "mhydrogen"
+	name = "metallic hydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
