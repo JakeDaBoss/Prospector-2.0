@@ -25,7 +25,7 @@
 			            access_heads, access_construction, access_sec_doors,
 			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload)
 	alt_titles = list("Foreman")
-	minimal_player_age = 7
+	minimal_player_age = 3
 
 
 	equip(var/mob/living/carbon/human/H)

@@ -16,11 +16,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
 	alt_titles = list("Station Administrator", "Station Director")
-	minimal_player_age = 14
+	minimal_player_age = 3
 	economic_modifier = 20
 
 	ideal_character_age = 70 // Old geezer captains ftw
-
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -65,7 +64,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
-	minimal_player_age = 10
+	minimal_player_age = 3
 	economic_modifier = 10
 	ideal_character_age = 50
 	alt_titles = list("Human Resources Manager")
