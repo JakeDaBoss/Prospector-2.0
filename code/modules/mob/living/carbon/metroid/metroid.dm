@@ -144,20 +144,20 @@
 
 /mob/living/carbon/slime/Stat()
 	..()
+	. = (is_client_active(10 MINUTES))
 
-	statpanel("Status")
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	stat(null, "Intent: [a_intent]")
+	if(.)
+		if (statpanel("Status"))
+			stat(null, "Health: [round((health / maxHealth) * 100)]%")
+			stat(null, "Intent: [a_intent]")
+			stat(null, "Nutrition: [nutrition]/[get_max_nutrition()]")
+			if(amount_grown >= 10)
+				if(is_adult)
+					stat(null, "You can reproduce!")
+				else
+					stat(null, "You can evolve!")
 
-	if (client.statpanel == "Status")
-		stat(null, "Nutrition: [nutrition]/[get_max_nutrition()]")
-		if(amount_grown >= 10)
-			if(is_adult)
-				stat(null, "You can reproduce!")
-			else
-				stat(null, "You can evolve!")
-
-		stat(null,"Power Level: [powerlevel]")
+			stat(null,"Power Level: [powerlevel]")
 
 /mob/living/carbon/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them
