@@ -1,6 +1,8 @@
 #ifndef OVERRIDE_BAN_SYSTEM
 //Blocks an attempt to connect before even creating our client datum thing.
 world/IsBanned(key,address,computer_id)
+	if(!computer_id) //This will help against one of the wstock32.dll ban evading librarys
+		return list("reason" = "Null ckey on connection", "desc"="\nReason: Either a hacked client or connection error!")
 	if(ckey(key) in admin_datums)
 		return ..()
 
@@ -18,6 +20,10 @@ world/IsBanned(key,address,computer_id)
 		AddBan(ckey(key), computer_id, "Use of ToR", "Automated Ban", 0, 0)
 		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [config.banappeals]")
 
+	if(config && config.ip_blacklist && is_ip_blacklisted(address))
+		log_access("Failed Login: [src] - Blacklisted IP: [address]")
+		message_admins("\blue Failed Login: [src] - Blacklisted IP: [address]")
+		return list("reason"="Blacklisted IP", "desc"="\nReason: The network you are using to connect has been blacklisted.\nIf you believe this is a mistake, please request help at [config.banappeals]")
 
 	if(config.ban_legacy_system)
 
@@ -80,6 +86,20 @@ world/IsBanned(key,address,computer_id)
 		if (failedip)
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
+
+/proc/is_ip_blacklisted(address)
+	if(!establish_db_connection())
+		error("Ban database connection failure. Key [address] not checked")
+		log_misc("Ban database connection failure. Key [address] not checked")
+		return 0
+
+	var/DBQuery/query = dbcon.NewQuery("SELECT ip FROM erro_blacklist WHERE ip = '[address]'")
+
+	query.Execute()
+
+	while(query.NextRow())
+		if(query.item[1] == address) //This is pointless as sql only retuns values that match the query but I prefer safe than sorry. Sorry.
+			return 1
+	return 0
 #endif
 #undef OVERRIDE_BAN_SYSTEM
-
