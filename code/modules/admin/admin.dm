@@ -41,7 +41,7 @@ proc/admin_notice(var/message, var/rights)
 		usr << "Error: you are not an admin!"
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
+	var/body = "<html><center><head><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
@@ -121,12 +121,12 @@ proc/admin_notice(var/message, var/rights)
 			if(isanimal(M))
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A>"
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))
 				body += "<br><br>"
-				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
+				body += "<b>DNA Blocks:</b><br><table border='2'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
 				for(var/block=1;block<=DNA_SE_LENGTH;block++)
 					if(((block-1)%5)==0)
@@ -144,19 +144,19 @@ proc/admin_notice(var/message, var/rights)
 
 			body += {"<br><br>
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
-				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
+				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A><br>
 				\[ Xenos: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A>
 				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
 				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
 				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
+				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \]<br>
 				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
 				<A href='?src=\ref[src];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
 				<A href='?src=\ref[src];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
 				<A href='?src=\ref[src];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A>
 				<A href='?src=\ref[src];simplemake=human;species=Vox;mob=\ref[M]'>Vox</A> \] | \[
 				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				<A href='?src=\ref[src];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \] |
+				<A href='?src=\ref[src];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \]<br>
 				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
 				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
 				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
@@ -166,7 +166,7 @@ proc/admin_notice(var/message, var/rights)
 				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
 				<A href='?src=\ref[src];simplemake=ian;mob=\ref[M]'>Ian</A> |
 				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='?src=\ref[src];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
+				<A href='?src=\ref[src];simplemake=coffee;mob=\ref[M]'>Coffee</A><br>
 				\[ Construct: <A href='?src=\ref[src];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
 				<A href='?src=\ref[src];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
 				<A href='?src=\ref[src];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
@@ -199,7 +199,7 @@ proc/admin_notice(var/message, var/rights)
 				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
 
 	body += {"<br>
-		</body></html>
+		</center></body></html>
 	"}
 
 	usr << browse(body, "window=adminplayeropts;size=550x515")
