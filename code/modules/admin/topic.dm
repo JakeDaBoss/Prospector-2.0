@@ -757,7 +757,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
-			qdel(M.client)
+			del(M.client)
 
 	else if(href_list["removejobban"])
 		if(!check_rights(R_BAN))	return
@@ -815,7 +815,7 @@
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
-				qdel(M.client)
+				del(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
 				if(!check_rights(R_BAN))   return
@@ -841,7 +841,7 @@
 				feedback_inc("ban_perma",1)
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 
-				qdel(M.client)
+				del(M.client)
 				//qdel(M)
 			if("Cancel")
 				return
@@ -1225,14 +1225,14 @@
 		for(var/obj/structure/reagent_dispensers/fueltank/F in range(3, M.loc))
 			log_admin("fueltank deleted by [key_name(src.owner)] at [F.x],[F.y],[F.z]")
 			message_admins("fueltank deleted by [key_name(src.owner)] at [F.x],[F.y],[F.z]<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[F.x];Y=[F.y];Z=[F.z]'>JMP</a>")
-			del(F)
+			qdel(F)
 
 	else if(href_list["deletesm"])
 		for(var/obj/machinery/power/supermatter/SM in world)
 			if(SM.damage > SM.emergency_point)
 				log_admin("The supermatter was deleted by [key_name(src.owner)] at [SM.x],[SM.y],[SM.z]")
 				message_admins("The supermatter was deleted by [key_name(src.owner)] at [SM.x],[SM.y],[SM.z] <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[SM.x];Y=[SM.y];Z=[SM.z]'>JMP</a>")
-				del(SM)
+				qdel(SM)
 
 
 	else if(href_list["adminmoreinfo"])
