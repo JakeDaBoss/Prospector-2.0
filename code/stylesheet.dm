@@ -32,11 +32,11 @@ em						{font-style: normal;font-weight: bold;}
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
-.mod_channel			{color: #254117;	font-weight: bold;}
-.mod_channel .admin		{color: #0041C2;	font-weight: bold;}
+.mod_channel			{color: #347C17;	font-weight: bold;}
+.mod_channel .admin		{color: #7D0552;	font-weight: bold;}
 .admin_channel			{color: #6C2DC7;	font-weight: bold;}
 .dev_channel			{color: #C58917;	font-weight: bold;}
-.dev_channel .admin		{color: #786D5F;	font-weight: bold;}
+.dev_channel .admin		{color: #FF00FF;	font-weight: bold;}
 
 /* Radio: Misc */
 .deadsay				{color: #530FAD;}
