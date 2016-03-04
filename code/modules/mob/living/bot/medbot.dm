@@ -26,7 +26,7 @@
 	var/treatment_fire = "tricordrazine"
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
-	var/treatment_emag = "toxin"
+//	var/treatment_emag = "toxin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 /mob/living/bot/medbot/Life()
@@ -37,9 +37,9 @@
 
 	if(!client)
 
-		if(vocal && prob(1))
-			var/message = pick("Radar, put a mask on!", "There's always a catch, and it's the best there is.", "I knew it, I should've been a plastic surgeon.", "What kind of medbay is this? Everyone's dropping like dead flies.", "Delicious!")
-			say(message)
+//		if(vocal && prob(1))
+//			var/message = pick("Radar, put a mask on!", "There's always a catch, and it's the best there is.", "I knew it, I should've been a plastic surgeon.", "What kind of medbay is this? Everyone's dropping like dead flies.", "Delicious!")
+//			say(message)
 
 		if(patient)
 			if(Adjacent(patient))
@@ -65,8 +65,8 @@
 					patient = H
 					frustration = 0
 					if(last_newpatient_speak + 300 < world.time)
-						var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
-						say(message)
+//						var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
+//						say(message)
 						custom_emote(1, "points at [H.name].")
 						last_newpatient_speak = world.time
 					break
@@ -81,16 +81,16 @@
 	if(!istype(H))
 		return
 
-	if(H.stat == DEAD)
-		var/death_message = pick("No! NO!", "Live, damnit! LIVE!", "I... I've never lost a patient before. Not today, I mean.")
-		say(death_message)
+//	if(H.stat == DEAD)
+//		var/death_message = pick("No! NO!", "Live, damnit! LIVE!", "I... I've never lost a patient before. Not today, I mean.")
+//		say(death_message)
 		patient = null
 		return
 
 	var/t = valid_healing_target(H)
 	if(!t)
-		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
-		say(message)
+//		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
+//		say(message)
 		patient = null
 		return
 
@@ -262,8 +262,8 @@
 	if(H in ignored)
 		return null
 
-	if(emagged)
-		return treatment_emag
+//	if(emagged)
+//		return treatment_emag
 
 	// If they're injured, we're using a beaker, and they don't have on of the chems in the beaker
 	if(reagent_glass && use_beaker && ((H.getBruteLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getOxyLoss() >= (heal_threshold + 15))))
