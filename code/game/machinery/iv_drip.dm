@@ -166,3 +166,122 @@
 	if(height && istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.
 		return 1
 	return ..()
+
+////////////
+/*medical bed*/ // A lot of this is duplicated code. May need to work on that later.
+////////////
+
+/obj/machinery/medicalbed
+	name = "medicalbed"
+	desc = "This is used to lie in, sleep in or strap on."
+	icon = 'icons/obj/medicalbed.dmi'
+	icon_state = "medicalbed"
+	anchored = 1
+	can_buckle = 1
+	buckle_dir = SOUTHWEST
+	buckle_lying = 1
+	density = 0
+
+/obj/machinery/medicalbed/var/mob/living/carbon/human/attached = null
+/obj/machinery/medicalbed/var/obj/item/weapon/reagent_containers/beaker = null
+
+/obj/machinery/medicalbed/update_icon()
+	if(src.attached)
+		icon_state = "medicalbed_on"
+	else
+		icon_state = "medicalbed"
+
+	overlays = null
+
+	if(beaker)
+		var/datum/reagents/reagents = beaker.reagents
+		if(reagents.total_volume)
+			var/image/filling = image('icons/obj/iv_drip.dmi', src, "reagent")
+
+			var/percent = round((reagents.total_volume / beaker.volume) * 100)
+			switch(percent)
+				if(0 to 9)	filling.icon_state = "reagent0"
+				if(10 to 24)	filling.icon_state = "reagent10"
+				if(25 to 49)	filling.icon_state = "reagent25"
+				if(50 to 74)	filling.icon_state = "reagent50"
+				if(75 to 79)	filling.icon_state = "reagent75"
+				if(80 to 90)	filling.icon_state = "reagent80"
+				if(91 to INFINITY)	filling.icon_state = "reagent100"
+
+			filling.icon += reagents.get_color()
+			filling.pixel_x = 4 // Have to align the overlay with the sprite.
+			filling.pixel_y = 2
+			overlays += filling
+
+/obj/machinery/medicalbed/MouseDrop(over_object, src_location, over_location)
+	..()
+
+	if(attached)
+		visible_message("[src.attached] is detached from \the [src]")
+		src.attached = null
+		src.update_icon()
+		return
+
+	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
+		visible_message("[usr] attaches the iv to \the [over_object].")
+		src.attached = over_object
+		src.update_icon()
+
+	else
+		user_unbuckle_mob(src.attached) // This is a hack... I feel horrible.
+
+/obj/machinery/medicalbed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/reagent_containers))
+		if(!isnull(src.beaker))
+			user << "There is already a reagent container loaded!"
+			return
+
+		user.drop_item()
+		W.loc = src
+		src.beaker = W
+		user << "You insert \the [W] in to \the [src]."
+		src.update_icon()
+		return
+	else
+		return ..()
+
+/obj/machinery/medicalbed/verb/detach_beaker(mob/user as mob)
+	set category = "Object"
+	set name = "Detach Beaker"
+
+	if(src.beaker)
+		src.beaker.loc = get_turf(src)
+		src.beaker = null
+		update_icon()
+	else
+		return ..()
+
+/obj/machinery/medicalbed/post_buckle_mob(mob/living/M as mob)
+	if(M == buckled_mob)
+		M.pixel_y = 4 // Makes the person line up with the bed.
+		M.old_y = 4
+	else
+		M.pixel_y = 0 // Undoes the above.
+		M.old_y = 0
+
+	return ..()
+
+/obj/machinery/medicalbed/process()
+	set background = 1
+
+	if(src.attached)
+
+		if(!(get_dist(src, src.attached) <= 1 && isturf(src.attached.loc))) // Removes the IV if the person moves away from the bed.
+			src.attached = null
+			src.update_icon()
+			return
+
+	if(src.attached && src.beaker && (src.beaker.volume > 0)) // Transfers the chemicals into the person.
+		var/transfer_amount = REM * 1.1
+		src.beaker.reagents.trans_to_mob(src.attached, transfer_amount, CHEM_BLOOD)
+		update_icon()
+
+/obj/machinery/medicalbed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(height && istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.
+		return 1
+	return ..()
