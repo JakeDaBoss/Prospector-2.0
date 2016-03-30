@@ -1,5 +1,6 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
+	w_class = 10
 
 	var/climbable
 	var/breakable
@@ -28,13 +29,6 @@
 
 	return ..()
 
-/obj/structure/blob_act()
-	if(prob(50))
-		qdel(src)
-
-/obj/structure/meteorhit(obj/O as obj)
-	qdel(src)
-
 /obj/structure/attack_tk()
 	return
 
@@ -49,9 +43,6 @@
 				return
 		if(3.0)
 			return
-
-/obj/structure/meteorhit(obj/O as obj)
-	qdel(src)
 
 /obj/structure/New()
 	..()
@@ -79,7 +70,7 @@
 		return ..()
 
 /obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
-	if (!can_touch(user) || !climbable || (!post_climb_check && (user in climbers)))
+	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
 		return 0
 
 	if (!user.Adjacent(src))
