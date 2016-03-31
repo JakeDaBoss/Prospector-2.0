@@ -135,14 +135,20 @@
 	if(damage > emergency_point)
 		alert_msg = emergency_alert + alert_msg
 		lastwarning = world.timeofday - WARNING_DELAY * 4
+		for(var/client/C in admins)
+			C << 'sound/ambience/alarm4.ogg'
+		message_admins("Got some noob engineers this round the Supermatter is about to blow! (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) (<A HREF='?_src_=holder;deletesm=\ref[usr]'>Delete!</A>)")
+
 	else if(damage >= damage_archived) // The damage is still going up
 		safe_warned = 0
 		alert_msg = warning_alert + alert_msg
 		lastwarning = world.timeofday
+		message_admins("Warning...you best keep an eye on the Supermatter just in case. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	else if(!safe_warned)
 		safe_warned = 1 // We are safe, warn only once
 		alert_msg = safe_alert
 		lastwarning = world.timeofday
+		message_admins("Supermatter crystal is now safe")
 	else
 		alert_msg = null
 	if(alert_msg)
@@ -154,7 +160,6 @@
 		else if(safe_warned && public_alert)
 			radio.autosay(alert_msg, "Supermatter Monitor")
 			public_alert = 0
-
 
 /obj/machinery/power/supermatter/get_transit_zlevel()
 	//don't send it back to the station -- most of the time
