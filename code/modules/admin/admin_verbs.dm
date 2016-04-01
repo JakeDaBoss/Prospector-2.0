@@ -10,6 +10,10 @@ var/list/admin_verbs_default = list(
 //	/client/proc/check_antagonists,		//shows all antags,
 	/client/proc/cmd_mentor_check_new_players
 //	/client/proc/deadchat				//toggles deadchat on/off,
+  /client/proc/clean,
+  /client/proc/cleartox,
+	/client/proc/admincryo,
+	/client/proc/alertlevel
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
@@ -298,6 +302,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob
+	/client/proc/cmd_admin_rejuvenate
 )
 
 var/list/admin_verbs_mentor = list(
