@@ -72,6 +72,11 @@
 		icon_state = "resomi_spiky"
 		species_allowed = list("Resomi")
 
+	avis_beak
+		name = "Aviskree Beak"
+		icon_state = "facial_beak"
+		species_allowed = list("Aviskree")
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"

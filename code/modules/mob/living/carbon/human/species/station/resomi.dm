@@ -6,7 +6,8 @@
 	that emphasized taking out their prey without themselves getting hit. They are an \
 	advanced post-scarcity culture on good terms with Skrellian and Human interests."
 
-	num_alternate_languages = 2
+	num_alternate_languages = 1
+	language = LANGUAGE_RESOMI
 	secondary_langs = list("Resomi")
 	name_language = "Resomi"
 
@@ -83,7 +84,7 @@
 	var/shock_cap = 30
 	var/hallucination_cap = 25
 
-// I'm... so... ronrery, so ronery...
+/*// I'm... so... ronrery, so ronery...
 /datum/species/resomi/handle_environment_special(var/mob/living/carbon/human/H)
 
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
@@ -106,7 +107,7 @@
 		H.shock_stage += 1
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
-
+*/
 /datum/species/resomi/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS

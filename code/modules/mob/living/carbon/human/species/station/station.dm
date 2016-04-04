@@ -31,7 +31,8 @@
 	gluttonous = GLUT_TINY
 	slowdown = 0.5
 	brute_mod = 0.8
-	num_alternate_languages = 2
+	num_alternate_languages = 1
+	language = LANGUAGE_UNATHI
 	secondary_langs = list("Sinta'unathi")
 	name_language = "Sinta'unathi"
 
@@ -49,7 +50,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
@@ -88,7 +89,8 @@
 	brute_mod = 1.15
 	burn_mod =  1.15
 	gluttonous = GLUT_TINY
-	num_alternate_languages = 2
+	num_alternate_languages = 1
+	language = LANGUAGE_SIIK_TAJR
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
 
@@ -108,7 +110,7 @@
 
 	primitive_form = "Farwa"
 
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
@@ -139,11 +141,12 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
-	num_alternate_languages = 2
+	num_alternate_languages = 1
+	language = LANGUAGE_SKRELLIAN
 	secondary_langs = list("Skrellian")
 	name_language = null
 
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
@@ -167,6 +170,8 @@
 	eyes = "blank_eyes"
 	show_ssd = "completely quiescent"
 	num_alternate_languages = 1
+	language = LANGUAGE_ROOTSPEAK
+	secondary_langs = list("Rootspeak")
 	name_language = "Rootspeak"
 
 	blurb = "Commonly referred to (erroneously) as 'plant people', the Dionaea are a strange space-dwelling collective \
@@ -288,7 +293,7 @@
 	passive_temp_gain = 10  // This should cause IPCs to stabilize at ~80 C in a 20 C environment.
 
 	flags = NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | NO_POISON
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = CAN_JOIN
 
 	blood_color = "#1F181F"
 	flesh_color = "#575757"
@@ -331,4 +336,3 @@
 
 /datum/species/machine/sanitize_name(var/new_name)
 	return sanitizeName(new_name, allow_numbers = 1)
-
